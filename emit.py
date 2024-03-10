@@ -13,7 +13,7 @@ class Emitter:
     def emitLine(self, code):
         self.code += code + '\n'
 
-    def headLine(self, code):
+    def headerLine(self, code):
         self.header += code + '\n'
 
     def writeFile(self):
