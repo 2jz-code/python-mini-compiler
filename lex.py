@@ -124,7 +124,7 @@ class Lexer:
             tokText = self.source[startPos : self.curPos + 1]
             keyword = Token.checkIfKeyword(tokText)
             if keyword == None: #indentifier
-                token = Token(tokText, TokenType.INDENT)
+                token = Token(tokText, TokenType.IDENT)
             else: #keyword
                 token = Token(tokText, keyword)
         
@@ -160,7 +160,7 @@ class TokenType(Enum):
     EOF = -1
     NEWLINE = 0
     NUMBER = 1
-    INDENT = 2
+    IDENT = 2
     STRING = 3
     # keywords
     LABEL = 101
