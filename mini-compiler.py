@@ -1,12 +1,22 @@
 from lex import *
+from emit import *
+from parse import *
+import sys
 
 def main():
-    source = "+-*/"
-    lexer = Lexer(source)
+    print("Mini Compiler")
 
-    token = lexer.getToken()
-    while token.kind != TokenType.EOF:
-        print(token.kind)
-        token = lexer.getToken()
+    if len(sys.argv) != 2:
+        sys.exit("Error: Compiler needs a source file as an argument")
+    with open(sys.argv[1], 'r') as inputFile:
+        source = inputFile.read()
+    
+    lexer = Lexer(source)
+    emitter = Emitter("out.c")
+    parser = Parser(lexer, emitter)
+
+    parser.program()
+    emitter.writeFile()
+    print("Compiling completed.")
 
 main()
